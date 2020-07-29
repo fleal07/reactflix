@@ -1,7 +1,7 @@
 import React from "react";
 import dadosIniciais from "../../data/dados_iniciais.json"
 import BannerMain from "../../components/BannerMain/index"
-import Carousel from "../../components/Carousel/index"
+import Carousel from "../../components/Carrousel/index"
 import Footer from "../../components/Footer/index"
 import Menu from "../../components/Menu/index";
 
