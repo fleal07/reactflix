@@ -36,7 +36,10 @@ function CadastroCategoria() {
   // 2-Quando a gente quer q aconteça []Array (Pode ou não passar este parâmetro)
   useEffect(() => {
     if (window.location.href.includes('localhost')) {
-      const URL = 'http://localhost:8080/categorias';
+      const URL = window.location.hostname.includes('localhost')
+        ? 'http://localhost:8080/categorias'
+        : 'https://lealflix.herokuapp.com/categorias';
+      // 'http://localhost:8080/categorias';
       fetch(URL)
         .then(async (respostaServidor) => {
           if (respostaServidor.ok) {
