@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault/index';
 import FormField from '../../../components/FormField/index';
 import Button from '../../../components/Button';
+import useForm from '../../../hooks/useForm';
 
 function CadastroCategoria() {
   const initialValues = {
@@ -11,24 +12,13 @@ function CadastroCategoria() {
     color: '#AAAAAA',
   };
 
+  const { handleChange, values, clearForm } = useForm(initialValues);
   const [categories, setCategories] = useState([]);
-  const [values, setValues] = useState(initialValues);
-
-  function setValueCategory(key, value) {
-    setValues({
-      ...values,
-      [key]: value,
-    });
-  }
-
-  function handleChange(info) {
-    setValueCategory(info.target.getAttribute('name'), info.target.value);
-  }
 
   function handleSubmit(info) {
     info.preventDefault();
     setCategories([...categories, values]);
-    setValues(initialValues);
+    clearForm();
   }
 
   // Usa dois parâmetros
@@ -39,7 +29,7 @@ function CadastroCategoria() {
       const URL = window.location.hostname.includes('localhost')
         ? 'http://localhost:8080/categorias'
         : 'https://lealflix.herokuapp.com/categorias';
-      // 'http://localhost:8080/categorias';
+
       fetch(URL)
         .then(async (respostaServidor) => {
           if (respostaServidor.ok) {
